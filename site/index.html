@@ -518,7 +518,7 @@ function startRedirect(){
   };
   later(run,700);
 }
-function flexDefaults(){return {open:false,name:CUSTOMER.company,routing:"123456789",acct:"000123451234",acct2:"000123451234",type:"Business Checking",auth:false,phase:"form",txn:"FLX-DEMO-000123"};}
+function flexDefaults(){return {open:true,name:CUSTOMER.company,routing:"123456789",acct:"000123451234",acct2:"000123451234",type:"Business Checking",auth:false,phase:"form",txn:"FLX-DEMO-000123"};}
 var ctlAuto=false;
 function openFlex(){clearTimers();S.flex=flexDefaults();renderFlex();$("#flexWin").classList.add("show");var c=$("#ctl");if(!c.classList.contains("min")){c.classList.add("min");$("#ctlMin").textContent="+";ctlAuto=true;}}
 function closeFlex(){$("#flexWin").classList.remove("show");if(ctlAuto){$("#ctl").classList.remove("min");$("#ctlMin").textContent="–";ctlAuto=false;}}
