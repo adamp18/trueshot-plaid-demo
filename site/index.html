@@ -418,7 +418,7 @@ function stepPayment(){
   var h='<div class="card"><h2>Payment method</h2><p class="sub">Wholesale orders are prepaid. Choose how Sample Range &amp; Supply will pay.</p>'+
   '<button class="opt '+(S.pay==="ach"?"sel":"")+'" data-pay="ach" data-testid="pay-ach"><span class="radio"></span><span><span class="t">Pay by bank (ACH) via Plaid<span class="tagg">RECOMMENDED</span></span>'+
   '<div class="d">Log in to your business bank through Plaid. Your account is verified instantly and the available balance is checked before the order is placed.</div>'+
-  '<ul class="bul"><li>No typing account numbers</li><li>Instant verification</li><li>Balance confirmed up front</li></ul></span></button>';
+  '<ul class="bul"><li>Instant verification</li><li>Balance confirmed up front</li></ul></span></button>';
   if(S.pay==="ach"&&S.account){
     h+='<div class="linked" data-testid="linked">'+bk(bankObj())+'<div style="flex:1"><b style="color:var(--ink)">'+S.bank+' · '+S.account.name+' ••••'+S.account.mask+'</b><br><small style="color:var(--muted)">Already connected through Plaid. The balance will be checked again for the current total.</small></div><button class="btn ghost sm" data-act="relink">Use a different bank</button></div>';
   }
@@ -434,7 +434,7 @@ function stepConnect(){
 }
 var CHECKS=[
   {k:"login",t:"Bank login confirmed",p:"Auth",d:function(){return "Buyer signed in to "+S.bank+" through Plaid, which shows they control this account.";}},
-  {k:"numbers",t:"Routing & account numbers received from the bank",p:"Auth",d:function(){return "Numbers come straight from "+S.bank+". Nothing was typed, so there are no typos.";}},
+  {k:"numbers",t:"Routing & account numbers received from the bank",p:"Auth",d:function(){return "Numbers come straight from "+S.bank+".";}},
   {k:"type",t:"Account type eligible for ACH debit",p:"Auth",d:function(){return S.account.type==="checking"?S.account.name+" (checking) is eligible.":S.account.name+": savings accounts are not accepted for wholesale ACH debits.";}},
   {k:"balance",t:"Real-time available balance covers the order",p:"Balance",d:function(){return "Available "+money(S.account.bal)+" vs. ACH amount "+money(achAmount())+" · checked "+ftime(new Date());}},
   {k:"identity",t:"Account holder matches wholesale account",p:"Identity",o:1,d:function(){return "Name on the bank account matches “Sample Range & Supply”.";}},
@@ -586,7 +586,7 @@ function renderPlaid(){
   if(p==="consent"){
     h=pFrame('<div class="duo"><div class="a"><b style="font-weight:800">t<span>s</span></b></div><div class="b"><span class="plaid-mark">'+grid()+'</span></div></div>'+
     '<div class="p-h" style="text-align:center">True Shot Ammo uses <b>Plaid</b> to connect your account</div>'+
-    '<div class="perk"><span class="pi">⚡</span><div><b>Connect in seconds</b><span>Verify your business bank account instantly. No account numbers to type.</span></div></div>'+
+    '<div class="perk"><span class="pi">⚡</span><div><b>Connect in seconds</b><span>Verify your business bank account instantly.</span></div></div>'+
     '<div class="perk"><span class="pi">🔒</span><div><b>Your credentials stay private</b><span>Your bank login is never shared with True Shot Ammo.</span></div></div>'+
     '<div class="perk"><span class="pi">✓</span><div><b>Balance checked up front</b><span>True Shot will see account details and the available balance to confirm payment.</span></div></div>',
     '<p class="legal">By selecting “Continue” you agree to the Plaid <u>End User Privacy Policy</u> (simulated link).</p><button class="p-btn" data-p="institutions" data-testid="plaid-continue">Continue</button>');
