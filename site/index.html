@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>True Shot Ammo Wholesale | Checkout with Plaid (Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Archivo+Black&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#E41D32; --red-dark:#B8152A; --red-tint:#FDEBEC;
+  --ink:#1c1c1c; --text:#5b5b5d; --muted:#8a8a8a; --line:#e5e5e5; --bg:#f6f6f6;
+  --green:#11804f; --green-tint:#e6f5ec; --amber:#b25e00; --amber-tint:#fff4e0;
+  --heading:"Archivo Black", Impact, sans-serif; --body:Almarai, Arial, sans-serif;
+  --plaid:Inter, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--body);color:var(--text);background:var(--bg);font-size:15px;line-height:1.45;min-width:320px}
+h1,h2,h3{font-family:var(--heading);font-weight:400;color:var(--ink);margin:0;letter-spacing:.2px}
+button{font-family:inherit;cursor:pointer}
+button:disabled{cursor:not-allowed}
+a{color:inherit}
+.demo-banner{background:#ffd23f;color:#1c1c1c;font:700 12.5px/1 var(--body);text-align:center;padding:8px 12px;letter-spacing:.3px}
+.demo-banner b{background:#1c1c1c;color:#ffd23f;padding:3px 7px;border-radius:3px;margin-right:8px;font-size:11px;letter-spacing:1px}
+.site-header{background:#000;color:#fff}
+.hdr-top{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:28px;padding:14px 24px 8px}
+.logo{display:flex;flex-direction:column;align-items:center;text-decoration:none;line-height:1}
+.logo .word{font-family:var(--body);font-weight:800;font-size:38px;letter-spacing:-1.5px}
+.logo .word .t{color:#d9d9d9}.logo .word .s{color:var(--red)}
+.logo .tag{font:700 8.5px/1 var(--body);letter-spacing:2.6px;color:#bdbdbd;margin-top:3px}
+.ws-badge{background:var(--red);color:#fff;font:400 13px/1 var(--heading);padding:7px 10px 6px;border-radius:3px;letter-spacing:1.5px}
+.search{flex:1;max-width:420px;margin-left:auto;display:flex;align-items:center;gap:10px;background:#f3f3f3;color:#777;border-radius:2px;padding:10px 14px;font-size:14px}
+.hdr-icons{display:flex;gap:26px;margin-left:24px;font-size:11px;color:#ddd;text-align:center}
+.hdr-icons div svg{display:block;margin:0 auto 3px}
+.cart-count{position:relative}
+.cart-count i{position:absolute;top:-6px;right:-8px;background:var(--red);color:#fff;font-style:normal;font-size:10px;border-radius:9px;padding:1px 5px}
+.hdr-nav{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:30px;padding:8px 24px 14px;font:700 15px/1 var(--body)}
+.hdr-nav span{color:#fff;opacity:.95}
+.hdr-nav span.on{color:#fff;border-bottom:2px solid var(--red);padding-bottom:5px}
+.acct-strip{background:#1c1c1c;color:#cfcfcf;font-size:13px}
+.acct-strip .in{max-width:1200px;margin:0 auto;padding:8px 24px;display:flex;gap:22px;align-items:center}
+.acct-strip b{color:#fff}
+.acct-strip .sample{margin-left:auto;font-size:11.5px;color:#ffd23f}
+.stepper{background:#fff;border-bottom:1px solid var(--line)}
+.stepper ol{list-style:none;max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;gap:0}
+.stepper li{flex:1;display:flex;align-items:center;gap:10px;font:700 13px/1.2 var(--body);color:#9a9a9a;position:relative}
+.stepper li:not(:last-child)::after{content:"";flex:1;height:2px;background:var(--line);margin:0 12px}
+.stepper li.done:not(:last-child)::after{background:var(--red)}
+.stepper .dot{width:28px;height:28px;border-radius:50%;border:2px solid #cfcfcf;display:grid;place-items:center;font-size:13px;flex:none;background:#fff}
+.stepper li.done{color:var(--ink)} .stepper li.done .dot{background:var(--red);border-color:var(--red);color:#fff}
+.stepper li.cur{color:var(--ink)} .stepper li.cur .dot{border-color:var(--red);color:var(--red);box-shadow:0 0 0 4px var(--red-tint)}
+.stepper li.done{cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:22px 24px 120px;display:grid;grid-template-columns:1fr 350px;gap:24px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px 24px}
+.card h2{font-size:22px;margin-bottom:4px}
+.sub{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+.sample-pill{display:inline-block;background:#fff4c2;color:#6b5400;font:700 10.5px/1 var(--body);padding:4px 7px;border-radius:3px;letter-spacing:.5px;vertical-align:middle;margin-left:8px}
+table.cart{width:100%;border-collapse:collapse;font-size:14px}
+table.cart th{text-align:left;font:700 11.5px/1 var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.8px;padding:8px 6px;border-bottom:1px solid var(--line)}
+table.cart td{padding:12px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.cart td.r,table.cart th.r{text-align:right}
+.prod{display:flex;align-items:center;gap:12px}
+.thumb{width:46px;height:46px;border-radius:4px;background:linear-gradient(135deg,#2a2a2a,#555);display:grid;place-items:center;color:#d6b25e;font:400 11px/1 var(--heading);flex:none}
+.prod b{color:var(--ink);display:block;font-size:14px}
+.prod small{color:var(--muted);font-size:12px}
+.qty{display:inline-flex;border:1px solid #d6d6d6;border-radius:3px;overflow:hidden}
+.qty button{border:0;background:#f3f3f3;width:26px;height:28px;font-size:15px;color:var(--ink)}
+.qty span{width:38px;display:grid;place-items:center;font-weight:700;color:var(--ink)}
+.notice{border-radius:5px;padding:11px 14px;font-size:13.5px;margin:0 0 14px;display:flex;gap:10px;align-items:flex-start}
+.notice.info{background:#eef3ff;color:#1f3a7a}
+.notice.warn{background:var(--amber-tint);color:#6d3b00}
+.summary h3{font-size:16px;margin-bottom:12px}
+.srow{display:flex;justify-content:space-between;padding:6px 0;font-size:14px}
+.srow.total{border-top:1px solid var(--line);margin-top:8px;padding-top:12px;font-weight:800;color:var(--ink);font-size:18px}
+.srow small{color:var(--muted)}
+.paybox{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;font-size:13px}
+.paybox b{color:var(--ink)}
+.secure{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);margin-top:14px}
+.btn{border:2px solid var(--red);background:var(--red);color:#fff;font:700 15px/1 var(--body);padding:13px 22px;border-radius:3px;letter-spacing:.3px}
+.btn:hover:not(:disabled){background:var(--red-dark);border-color:var(--red-dark)}
+.btn:disabled{background:#d9d9d9;border-color:#d9d9d9;color:#8d8d8d}
+.btn.ghost{background:#fff;color:var(--red)}
+.btn.ghost:hover:not(:disabled){background:var(--red-tint);color:var(--red)}
+.btn.dark{background:#1c1c1c;border-color:#1c1c1c}
+.btn.sm{padding:9px 14px;font-size:13.5px}
+.navbar{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:12px}
+.navbar .hint{font-size:12.5px;color:var(--muted);text-align:right;flex:1}
+.opt{border:2px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;background:#fff;width:100%;text-align:left;font-family:inherit;color:inherit;font-size:15px}
+.opt.sel{border-color:var(--red);background:#fffafa}
+.opt .radio{width:20px;height:20px;border-radius:50%;border:2px solid #bbb;flex:none;margin-top:2px;display:grid;place-items:center}
+.opt.sel .radio{border-color:var(--red)}.opt.sel .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--red)}
+.opt .t{font-weight:800;color:var(--ink);font-size:15.5px}
+.opt .d{font-size:13.5px;margin-top:3px}
+.opt .tagg{margin-left:8px;background:var(--green);color:#fff;font-size:10.5px;padding:3px 7px;border-radius:3px;letter-spacing:.6px;vertical-align:2px}
+.bul{margin:8px 0 0;padding:0;list-style:none;font-size:13px;display:flex;gap:16px;flex-wrap:wrap}
+.bul li::before{content:"✓ ";color:var(--green);font-weight:800}
+.fakefields{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px;margin-top:10px}
+.fakefields div{border:1px solid #ddd;border-radius:3px;padding:10px;font-size:13px;color:#aaa;background:#fafafa}
+.linked{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin:-4px 0 12px;background:#fafafa}
+.bk{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;font:700 12px/1 var(--plaid);flex:none}
+.checks{list-style:none;padding:0;margin:6px 0 18px}
+.checks li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f0f0f0;transition:opacity .3s}
+.checks li.pending{opacity:.38}
+.ic{width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:800;font-size:14px;background:#eee;color:#999}
+.ic.ok{background:var(--green);color:#fff}.ic.fail{background:var(--red);color:#fff}.ic.skip{background:#ddd;color:#888}
+.ic.spin{background:none;border:3px solid #e5e5e5;border-top-color:var(--red);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.checks .ct{font-weight:700;color:var(--ink);font-size:14.5px}
+.checks .cd{font-size:13px;color:var(--muted)}
+.prodtag{font:600 10.5px/1 var(--plaid);background:#111;color:#fff;padding:3px 6px;border-radius:3px;margin-left:6px;vertical-align:2px}
+.prodtag.o{background:#fff;color:#555;border:1px solid #bbb;padding:2px 6px}
+.verify-hero{display:flex;gap:16px;align-items:center;margin-bottom:6px}
+.radar{width:54px;height:54px;border-radius:50%;border:4px solid #eee;border-top-color:var(--red);animation:spin 1s linear infinite;flex:none}
+.result{border-radius:6px;padding:18px 20px;margin-top:4px}
+.result.ok{background:var(--green-tint);border:1px solid #b9e2c9}
+.result.warn{background:var(--amber-tint);border:1px solid #f2d19b}
+.result.bad{background:var(--red-tint);border:1px solid #f3b9c0}
+.result h3{font-size:18px;margin-bottom:6px}
+.result p{margin:4px 0;font-size:14px;color:#3a3a3a}
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.choice{background:#fff;border:1px solid #ddd;border-radius:6px;padding:12px;text-align:left;font-family:inherit;color:inherit}
+.choice:hover{border-color:var(--red)}
+.choice b{display:block;color:var(--ink);font-size:14px;margin-bottom:3px}
+.choice span{font-size:12.5px;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.split label{font-size:12.5px;font-weight:700;color:var(--ink)}
+.split input{width:100%;padding:10px;border:1px solid #ccc;border-radius:3px;font:700 16px var(--body);margin-top:4px}
+.split .ro{background:#f5f5f5;color:#555}
+.kv{display:grid;grid-template-columns:180px 1fr;gap:8px 16px;font-size:14px;margin:6px 0 16px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;color:var(--ink);font-weight:700}
+.authbox{border:1px solid #d6d6d6;background:#fbfbfb;border-radius:5px;padding:14px 16px;font-size:13px;color:#444;line-height:1.55}
+.authbox label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.authbox input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:var(--red);flex:none}
+.signer{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.signer div{font-size:12px;color:var(--muted)}
+.signer input{display:block;width:100%;margin-top:3px;padding:9px;border:1px solid #ccc;border-radius:3px;font:14px var(--body);background:#f7f7f7;color:#333}
+.conf-hero{text-align:center;padding:10px 0 4px}
+.bigcheck{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:34px;margin:0 auto 12px}
+.ordno{display:inline-block;background:#1c1c1c;color:#fff;font:400 16px/1 var(--heading);padding:9px 14px;border-radius:4px;letter-spacing:1px;margin:8px 0}
+.next-steps{list-style:none;padding:0;margin:14px 0 0;counter-reset:n}
+.next-steps li{counter-increment:n;display:flex;gap:12px;padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:14px}
+.next-steps li::before{content:counter(n);width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;display:grid;place-items:center;flex:none;font-size:13px}
+.next-steps b{color:var(--ink)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:50}
+.overlay.show{display:flex}
+.plaid{width:380px;height:620px;max-height:96vh;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.35);font-family:var(--plaid);color:#111;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.p-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 4px;height:46px}
+.p-top button{border:0;background:none;font-size:20px;color:#333;width:30px;height:30px;border-radius:50%}
+.p-top button:hover{background:#f2f2f2}
+.p-body{flex:1;padding:6px 26px 0;overflow:auto;display:flex;flex-direction:column}
+.p-foot{padding:14px 26px 18px}
+.p-btn{width:100%;background:#111;color:#fff;border:0;border-radius:10px;padding:15px;font:600 15px var(--plaid)}
+.p-btn:hover{background:#333}
+.p-attr{display:flex;justify-content:center;align-items:center;gap:6px;font-size:11px;color:#777;margin-top:10px}
+.plaid-mark{display:inline-flex;align-items:center;gap:5px;font:800 12px var(--plaid);color:#111;letter-spacing:1.5px}
+.plaid-mark i{display:inline-grid;grid-template-columns:repeat(3,3px);gap:1px}
+.plaid-mark i s{width:3px;height:3px;background:currentColor;display:block}
+.p-h{font:700 22px/1.25 var(--plaid);margin:14px 0 10px;letter-spacing:-.3px}
+.p-p{font-size:14px;color:#555;margin:0 0 10px}
+.duo{display:flex;justify-content:center;margin:16px 0 6px}
+.duo div{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.duo .a{background:#000;color:#ddd;font:800 18px var(--body);z-index:2}
+.duo .a span{color:var(--red)}
+.duo .b{background:#111;color:#fff;margin-left:-10px}
+.duo .b .plaid-mark i{grid-template-columns:repeat(3,6px);gap:2px}.duo .b .plaid-mark i s{width:6px;height:6px;background:#fff}
+.perk{display:flex;gap:12px;margin:12px 0}
+.perk .pi{width:30px;height:30px;border-radius:8px;background:#f2f2f2;display:grid;place-items:center;flex:none;font-size:15px}
+.perk b{display:block;font-size:14px;margin-bottom:2px}
+.perk span{font-size:13px;color:#666}
+.legal{font-size:11.5px;color:#777;text-align:center;line-height:1.45;margin:0 0 10px}
+.legal u{color:#111}
+.p-search{display:flex;align-items:center;gap:8px;border:1px solid #ddd;border-radius:10px;padding:11px 12px;margin:4px 0 14px}
+.p-search input{border:0;outline:0;font:14px var(--plaid);flex:1}
+.banks{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-bottom:10px}
+.bank{border:1px solid #e3e3e3;background:#fff;border-radius:12px;padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:7px;font:600 12.5px var(--plaid);color:#111}
+.bank:hover{border-color:#111;background:#fafafa}
+.p-field{border:1px solid #ccc;border-radius:10px;padding:8px 12px;margin-bottom:12px}
+.p-field label{display:block;font-size:11.5px;color:#666}
+.p-field input{border:0;outline:0;width:100%;font:15px var(--plaid);padding:3px 0;background:transparent;color:#111}
+.sandbox{background:#f4f4ff;color:#3b3b8f;border-radius:8px;padding:9px 11px;font-size:12px;margin-bottom:12px}
+.bankhead{display:flex;align-items:center;gap:10px;margin-top:8px}
+.acct{border:1.5px solid #e3e3e3;border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:center;margin-bottom:10px;cursor:pointer;background:#fff;width:100%;text-align:left;font-family:var(--plaid);color:#111}
+.acct.sel{border-color:#111;background:#fafafa}
+.acct .rb{width:18px;height:18px;border-radius:50%;border:2px solid #aaa;flex:none;display:grid;place-items:center}
+.acct.sel .rb{border-color:#111}.acct.sel .rb::after{content:"";width:9px;height:9px;border-radius:50%;background:#111}
+.acct b{font-size:14px;display:block}
+.acct small{font-size:12.5px;color:#666}
+.acct .bal{margin-left:auto;text-align:right;font-size:12px;color:#666}
+.acct .bal b{font-size:14px;color:#111}
+.acct .flag{font-size:10.5px;color:#b8152a;display:block;margin-top:2px}
+.p-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.p-spin{width:46px;height:46px;border-radius:50%;border:4px solid #eee;border-top-color:#111;animation:spin .8s linear infinite;margin-bottom:16px}
+.p-success{width:62px;height:62px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center;font-size:30px;margin-bottom:16px}
+.sim-tag{position:absolute;top:18px;left:50%;transform:translateX(-50%);font:600 10px var(--plaid);background:#fff4c2;color:#6b5400;padding:3px 7px;border-radius:4px;letter-spacing:.5px}
+.code-in{display:flex;gap:8px;justify-content:center;margin:10px 0 14px}
+.code-in span{width:44px;height:52px;border:1.5px solid #111;border-radius:10px;display:grid;place-items:center;font:600 22px var(--plaid)}
+.busy{background:#fff;border-radius:10px;padding:28px 34px;text-align:center;min-width:340px}
+.busy .radar{margin:0 auto 14px}
+.busy b{color:var(--ink);font-size:16px}
+.ctl{position:fixed;right:16px;bottom:16px;z-index:60;width:300px;background:#14161a;color:#e7e7e7;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.35);font:13px/1.35 var(--plaid)}
+.ctl-h{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid #2b2e35;font-weight:700;font-size:11.5px;letter-spacing:1px;color:#ffd23f}
+.ctl-h button{background:none;border:0;color:#aaa;font-size:16px}
+.ctl-b{padding:8px 14px 10px}
+.ctl.min .ctl-b{display:none}
+.ctl label.sc{display:flex;gap:8px;padding:4px 0;cursor:pointer;align-items:flex-start}
+.ctl label.sc input{accent-color:#ffd23f;margin-top:2px}
+.ctl label.sc small{display:block;color:#9aa0a8;font-size:11.5px}
+.ctl .row{display:flex;gap:8px;margin-top:10px}
+.ctl .row button{flex:1;background:#2b2e35;color:#fff;border:0;border-radius:6px;padding:8px;font:600 12px var(--plaid)}
+.ctl .row button.on{background:#ffd23f;color:#111}
+.ctl .tgl{display:flex;gap:8px;align-items:center;margin-top:8px;font-size:12.5px;cursor:pointer}
+.ctl .tgl input{accent-color:#ffd23f}
+.seg{display:flex;background:#2b2e35;border-radius:6px;padding:3px;gap:3px}.seg label{flex:1;cursor:pointer}.seg input{position:absolute;opacity:0;pointer-events:none}.seg span{display:block;text-align:center;padding:6px 2px;border-radius:4px;font-size:11.5px;font-weight:600;color:#cfd3d8}.seg input:checked+span{background:#ffd23f;color:#111}.scdesc{font-size:11.5px;color:#9aa0a8;margin-top:6px}
+.ctl .lbl{font-size:11px;color:#9aa0a8;text-transform:uppercase;letter-spacing:.8px;margin:2px 0 4px}
+.bts{position:fixed;top:0;right:0;bottom:0;width:540px;max-width:100%;background:#fff;z-index:70;box-shadow:-10px 0 40px rgba(0,0,0,.25);transform:translateX(105%);transition:transform .3s ease;display:flex;flex-direction:column}
+.bts.show{transform:none}
+.bts-h{background:#000;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.bts-h h2{color:#fff;font-size:18px}
+.bts-h small{display:block;font:12px var(--body);color:#bbb;margin-top:3px}
+.bts-h button{background:none;border:1px solid #555;color:#fff;border-radius:4px;padding:6px 10px;font-size:13px}
+.bts-b{padding:14px 20px 40px;overflow:auto;font-size:13.5px;color:#333}
+.bts-b h3{font-size:14.5px;margin:16px 0 6px;color:var(--ink)}
+.bts table{width:100%;border-collapse:collapse;font-size:12.5px}
+.bts td,.bts th{border-bottom:1px solid #eee;padding:6px 6px;text-align:left;vertical-align:top}
+.bts th{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.6px}
+.bts tr.hl td{background:#fff6d6}
+.code{display:inline-block;font:700 11.5px var(--plaid);background:#1c1c1c;color:#fff;padding:2px 6px;border-radius:3px;min-width:34px;text-align:center}
+.good{color:var(--green);font-weight:800}.part{color:#b25e00;font-weight:800}
+.bts ul{padding-left:18px;margin:6px 0}.bts li{margin:4px 0}
+.bts .callout{background:#f4f6fa;border-left:3px solid #1f3a7a;padding:10px 12px;border-radius:3px;margin:10px 0}
+.bts .fine{font-size:11.5px;color:#888;margin-top:16px}
+.bts-tab{position:fixed;right:0;top:300px;transform:rotate(180deg);writing-mode:vertical-rl;background:#000;color:#fff;border:0;padding:14px 8px;border-radius:0 6px 6px 0;font:700 12.5px var(--body);letter-spacing:1px;z-index:58}
+.bts-tab span{color:#ffd23f}
+.devnote{background:#14161a;color:#e7e7e7;border-radius:6px;padding:12px 14px;font:12.5px/1.5 var(--plaid);margin:14px 0}
+.devnote b.k{display:inline-block;background:#ffd23f;color:#111;font-size:10.5px;letter-spacing:.8px;padding:2px 6px;border-radius:3px;margin-right:8px}
+.devnote code{font:12px ui-monospace,Menlo,Consolas,monospace;color:#9fe3b8}
+.useacct{display:flex;gap:12px;align-items:center;background:#eef3ff;color:#1f3a7a;border-radius:6px;padding:12px 14px;font-size:14px;margin:12px 0}
+.useacct b{color:#0f2350}
+.flexwin{position:fixed;inset:0;z-index:55;background:#fafafa;display:none;flex-direction:column;font-family:Montserrat,Arial,sans-serif;color:rgba(0,0,0,.87)}
+.flexwin.show{display:flex}
+.fx-chrome{background:#dfe1e5;padding:8px 12px;display:flex;align-items:center;gap:12px;flex:none}
+.fx-dots{display:flex;gap:6px}.fx-dots i{width:12px;height:12px;border-radius:50%;background:#ff5f57}.fx-dots i:nth-child(2){background:#febc2e}.fx-dots i:nth-child(3){background:#28c840}
+.fx-navi{color:#666;font-size:15px;letter-spacing:8px}
+.fx-url{flex:1;background:#fff;border-radius:16px;padding:7px 14px;font:13px var(--plaid);color:#202124;display:flex;gap:8px;align-items:center}
+.fx-url span{color:#5f6368}
+.fx-sim{font:700 10.5px var(--plaid);background:#ffd23f;color:#111;padding:4px 8px;border-radius:4px;letter-spacing:.5px;white-space:nowrap}
+.fx-body{flex:1;overflow:auto;padding:30px 24px 200px}
+.fx-grid{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 370px;gap:24px;align-items:start}
+.fx-card{background:#fff;border-radius:4px;box-shadow:0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);padding:24px 30px}
+.fx-head{display:flex;align-items:center;gap:20px;margin-bottom:18px}
+.fx-logo{background:#000;padding:6px 12px 5px;display:flex;flex-direction:column;align-items:center;line-height:1}
+.fx-logo .w{font:800 26px/1 Almarai,Arial,sans-serif;letter-spacing:-1px}.fx-logo .w .t{color:#fff}.fx-logo .w .s{color:#E41D32}
+.fx-logo .g{font:700 5.5px/1 Almarai,Arial;letter-spacing:1.6px;color:#ccc;margin-top:2px}
+.fx-merchant{font:600 21px Montserrat,Arial;flex:1;text-align:center;color:rgba(0,0,0,.87)}
+.fx-lbl{font-size:13.5px;color:rgba(0,0,0,.6);margin:0}
+.fx-amt{font:600 30px Montserrat,Arial;color:#1976d2;margin:2px 0 16px}
+.fx-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.fx-f{position:relative;border:1px solid rgba(0,0,0,.23);border-radius:4px;padding:14px 12px 10px}
+.fx-f label{position:absolute;top:-8px;left:9px;background:#fff;padding:0 4px;font-size:11px;color:rgba(0,0,0,.6)}
+.fx-f input,.fx-f select{border:0;outline:0;width:100%;font:15px Montserrat,Arial;color:rgba(0,0,0,.87);background:transparent;padding:0}
+.fx-f.ro{background:#f7f7f7}.fx-f.ro label{background:linear-gradient(#fff 50%,#f7f7f7 50%)}
+.fx-f:focus-within{border-color:#1976d2;box-shadow:0 0 0 1px #1976d2}
+.fx-f.bad{border-color:#d32f2f}
+.fx-hint{font-size:11.5px;color:rgba(0,0,0,.5);margin:-8px 0 14px}
+.fx-tab{width:100%;border:0;background:#f5f5f5;color:rgba(0,0,0,.7);font:500 13.5px Montserrat,Arial;letter-spacing:.6px;padding:13px;border-radius:4px;box-shadow:0 1px 2px rgba(0,0,0,.15);margin:4px 0 18px}
+.fx-tab.on{background:#e3f0fc;color:#1565c0;box-shadow:inset 0 -2px 0 #1976d2}
+.fx-ach{display:none}.fx-ach.show{display:block}
+.fx-auth{display:flex;gap:10px;font-size:13px;color:rgba(0,0,0,.75);margin:4px 0 16px;cursor:pointer;align-items:flex-start}
+.fx-auth input{width:18px;height:18px;accent-color:#1976d2;margin-top:1px;flex:none}
+.fx-pay{width:100%;border:0;border-radius:4px;padding:12px;font:500 15px Montserrat,Arial;background:#1976d2;color:#fff;box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px rgba(0,0,0,.14);display:flex;gap:8px;justify-content:center;align-items:center}
+.fx-pay:disabled{background:#e0e0e0;color:rgba(0,0,0,.38);box-shadow:none}
+.fx-legal{text-align:center;font-size:11.5px;color:rgba(0,0,0,.6);margin-top:20px;line-height:1.7}
+.fx-legal u{color:#1976d2;cursor:default}
+.fx-inv{width:100%;border:1px solid rgba(25,118,210,.5);color:#1976d2;background:#fff;border-radius:4px;padding:7px;font:500 13.5px Montserrat,Arial;margin-bottom:14px}
+.fx-t{width:100%;border-collapse:collapse;font-size:13.5px}.fx-t td{padding:8px 12px;border-bottom:1px solid #e0e0e0}.fx-t td:last-child{text-align:right}
+.fx-tot{box-shadow:0 1px 3px rgba(0,0,0,.15);margin-top:16px;border-radius:4px}
+.fx-tot div{display:flex;justify-content:space-between;padding:14px 12px;font-size:15px;color:#4a4a4a}.fx-tot div+div{border-top:1px solid #e0e0e0;font-weight:700}
+.fx-spin{width:18px;height:18px;border-radius:50%;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .8s linear infinite}
+.fx-done{text-align:center;padding:20px 0 6px}
+.fx-done .ck{width:68px;height:68px;border-radius:50%;background:#2e7d32;color:#fff;font-size:36px;display:grid;place-items:center;margin:0 auto 14px}
+.fx-done h2{font:600 22px Montserrat,Arial;color:rgba(0,0,0,.87);margin:0 0 6px}
+.dmpnote{margin-top:16px;border:2px dashed #e0a800;background:#fffbea;border-radius:6px;padding:14px 16px;font:12.5px/1.5 var(--plaid);color:#4a3b00}
+.dmpnote .h{font-weight:800;font-size:11px;letter-spacing:.8px;color:#6b5400;margin-bottom:6px}
+.dmpnote ul{margin:6px 0;padding-left:18px}.dmpnote li{margin:3px 0}
+.dmpnote .live{padding:8px 10px;border-radius:4px;font-weight:700}
+.live.ok{background:#e6f5ec;color:#0c5a37}.live.bad{background:#fdebec;color:#8c1020}
+@media (max-width:980px){.fx-grid{grid-template-columns:1fr}.fx-row{grid-template-columns:1fr}.fx-sim{display:none}}
+@media (max-width:980px){
+  .wrap{grid-template-columns:1fr}
+  .hdr-nav,.search{display:none}
+  .stepper li span.lbl{display:none}
+  .choices{grid-template-columns:1fr}
+  .ctl{width:240px}
+  .wrap{padding-bottom:300px}
+}
+@media (max-width:600px){ .thumb,.prod small{display:none} table.cart{font-size:12.5px} table.cart th{font-size:10px;letter-spacing:.3px} .card{padding:16px 14px} .acct-strip .in{flex-wrap:wrap;gap:4px 14px} .wrap{padding:14px 10px 300px} .logo .word{font-size:30px} .hdr-top{gap:14px;padding:12px 14px 10px} .kv{grid-template-columns:1fr} .fakefields,.split,.signer{grid-template-columns:1fr} .hdr-icons,.acct-strip .sample{display:none} .plaid{width:100%;height:100%;max-height:none;border-radius:0} }
+</style>
+</head>
+<body>
+<div class="demo-banner" data-testid="demo-banner"><b>DEMO</b>Simulated checkout. No real bank connection. Sample buyer, products, prices and balances are fictional. Prepared by Dynamic Merchant Processing.</div>
+<header class="site-header">
+  <div class="hdr-top">
+    <a class="logo" href="#" onclick="return false"><span class="word"><span class="t">true</span><span class="s">shot</span></span><span class="tag">TAKE YOUR BEST SHOT</span></a>
+    <span class="ws-badge">WHOLESALE</span>
+    <div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search wholesale catalog</div>
+    <div class="hdr-icons">
+      <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Account</div>
+      <div class="cart-count"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M5 8h14l-1.5 12h-11z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>Cart<i id="cartBadge">32</i></div>
+    </div>
+  </div>
+  <nav class="hdr-nav"><span>Pistol Ammo</span><span>Rifle Ammo</span><span>Shotgun Ammo</span><span>Rimfire Ammo</span><span>Accessories</span><span>Bulk Pricing</span><span class="on">Checkout</span></nav>
+  <div class="acct-strip"><div class="in"><span>Wholesale account: <b>Sample Range &amp; Supply</b></span><span>Acct # <b>WS-000000 (sample)</b></span><span>Terms: <b>Prepay by ACH or card</b></span><span class="sample">Sample data for demonstration only</span></div></div>
+</header>
+<div class="stepper"><ol id="stepper"></ol></div>
+<div class="wrap"><main id="main"></main><aside id="summary"></aside></div>
+<div class="overlay" id="plaidOverlay" data-testid="plaid-overlay"><div class="plaid" id="plaid" role="dialog" aria-label="Simulated Plaid Link"></div></div>
+<div class="overlay" id="busyOverlay"><div class="busy" id="busy"></div></div>
+<div class="flexwin" id="flexWin" data-testid="flex-window" aria-label="Simulated Titanium Flex hosted payment page"></div>
+<div class="ctl" id="ctl" data-testid="demo-controls">
+  <div class="ctl-h">DEMO CONTROLS <button id="ctlMin" title="Minimize" aria-label="Minimize demo controls">–</button></div>
+  <div class="ctl-b">
+    <div class="lbl">Bank result scenario</div>
+    <div class="seg"><label><input type="radio" name="sc" value="approved" checked data-testid="sc-approved"><span>A · Approved</span></label><label><input type="radio" name="sc" value="nsf" data-testid="sc-nsf"><span>B · Low funds</span></label><label><input type="radio" name="sc" value="ineligible" data-testid="sc-ineligible"><span>C · Not eligible</span></label></div>
+    <div class="scdesc" id="scDesc">Checking account; balance covers the order.</div>
+    <label class="tgl"><input type="checkbox" id="mfaTgl" checked> Include bank MFA step in Plaid</label>
+    <div class="row"><button id="btsBtn" data-testid="bts-toggle">Behind the scenes</button><button id="resetBtn" data-testid="reset">Restart demo</button></div>
+  </div>
+</div>
+<button class="bts-tab" id="btsTab" data-testid="bts-tab"><span>●</span> BEHIND THE SCENES</button>
+<aside class="bts" id="bts" data-testid="bts-panel" aria-label="Behind the scenes"></aside>
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s);};
+var fmt=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"});
+var money=function(n){return fmt.format(n);};
+var STEPS=["Cart review","Payment method","Connect bank","Verify","Secure payment","Confirmation"];
+var FREIGHT=280;
+var BANKS=[
+  {n:"Chase",c:"#117ACA",i:"C"},{n:"Bank of America",c:"#E31837",i:"BA"},{n:"Wells Fargo",c:"#D71E28",i:"WF"},
+  {n:"Regions",c:"#4F8A1F",i:"R"},{n:"Citi",c:"#056DAE",i:"Ci"},{n:"U.S. Bank",c:"#0C2074",i:"US"},
+  {n:"PNC",c:"#E9721B",i:"P"},{n:"Capital One",c:"#004977",i:"C1"},{n:"Truist",c:"#2E1A47",i:"T"},
+  {n:"Sample Community Bank",c:"#555",i:"SC"}
+];
+var INITIAL_CART=[
+  {sku:"9MM-115-FMJ-1K",name:"9mm Luger 115gr FMJ",pack:"Case of 1,000 rds · brass case",price:279.00,qty:15,tag:"9MM"},
+  {sku:"223-55-FMJ-1K",name:".223 Rem 55gr FMJ",pack:"Case of 1,000 rds · brass case",price:449.00,qty:5,tag:".223"},
+  {sku:"12GA-8-TGT-250",name:"12 Ga 2-3/4\" #8 Target Load",pack:"Case of 250 shells",price:89.00,qty:10,tag:"12GA"},
+  {sku:"22LR-40-LRN-5K",name:".22 LR 40gr LRN",pack:"Case of 5,000 rds",price:425.00,qty:2,tag:".22"}
+];
+function accountsFor(scn){
+  var p;
+  if(scn==="nsf")p={id:"a1",name:"Business Checking",type:"checking",mask:"1234",bal:3127.40};
+  else if(scn==="ineligible")p={id:"a1",name:"Business Savings",type:"savings",mask:"1234",bal:18640.22};
+  else p={id:"a1",name:"Business Checking",type:"checking",mask:"1234",bal:42318.55};
+  return [p,{id:"a2",name:"Operating Checking",type:"checking",mask:"7788",bal:26904.12}];
+}
+var S,timers=[];
+function freshState(scn){
+  return {step:1,scenario:scn||"approved",mfa:$("#mfaTgl").checked,cart:INITIAL_CART.map(function(x){return Object.assign({},x);}),
+    pay:"ach",plaid:"consent",bank:null,acctId:"a1",account:null,verify:null,verifyPhase:0,split:null,splitEdit:null,
+    flex:null,redirPhase:0,cartMsg:null,rejected:{},order:null,bankQuery:"",plaidResume:null};
+}
+function clearTimers(){timers.forEach(clearTimeout);timers=[];}
+function later(fn,ms){timers.push(setTimeout(fn,ms));}
+function totals(){
+  var sub=S.cart.reduce(function(a,x){return a+x.price*x.qty;},0),fr=sub>0?FREIGHT:0;
+  return {sub:sub,freight:fr,total:sub+fr,units:S.cart.reduce(function(a,x){return a+x.qty;},0)};
+}
+function nextBizDay(d){var x=new Date(d);do{x.setDate(x.getDate()+1);}while(x.getDay()===0||x.getDay()===6);return x;}
+function fdate(d){return d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",year:"numeric"});}
+function ftime(d){return d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});}
+function bankObj(){return BANKS.filter(function(b){return b.n===S.bank;})[0]||BANKS[3];}
+function bk(b,sz){sz=sz||36;return '<span class="bk" style="background:'+b.c+';width:'+sz+'px;height:'+sz+'px">'+b.i+'</span>';}
+function achAmount(){return S.split?S.split.ach:totals().total;}
+function grid(){return '<i><s></s><s></s><s></s><s></s><s></s><s></s><s></s><s></s><s></s></i>';}
+function plaidMark(){return '<span class="plaid-mark">'+grid()+'PLAID</span>';}
+
+function renderStepper(){
+  $("#stepper").innerHTML=STEPS.map(function(s,i){
+    var n=i+1,c=n<S.step||(S.step===6&&n===6)?"done":(n===S.step?"cur":"");
+    return '<li class="'+c+'" data-go="'+n+'"><span class="dot">'+(c==="done"?"✓":n)+'</span><span class="lbl">'+s+'</span></li>';
+  }).join("");
+}
+function renderSummary(){
+  var t=totals(),h='<div class="card summary"><h3>Order summary</h3>'+
+  '<div class="srow"><span>Items ('+t.units+' cases)</span><span>'+money(t.sub)+'</span></div>'+
+  '<div class="srow"><span>Freight (LTL, sample)</span><span>'+money(t.freight)+'</span></div>'+
+  '<div class="srow"><span>Sales tax <small>(resale cert. on file)</small></span><span>'+money(0)+'</span></div>'+
+  '<div class="srow total"><span>Order total</span><span data-testid="order-total">'+money(t.total)+'</span></div>';
+  if(S.account){
+    h+='<div class="paybox"><div style="color:var(--muted);margin-bottom:6px">Paying with</div><div style="display:flex;gap:10px;align-items:center">'+bk(bankObj(),30)+'<div><b>'+S.bank+'</b><br>'+S.account.name+' ••••'+S.account.mask+'</div></div>';
+    if(S.verify==="approved")h+='<div style="margin-top:8px;color:var(--green);font-weight:700">✓ Verified with Plaid</div>';
+    if(S.split)h+='<div class="srow" style="margin-top:6px"><span>ACH (bank)</span><span>'+money(S.split.ach)+'</span></div><div class="srow"><span>Card</span><span>'+money(S.split.card)+'</span></div>';
+    h+='</div>';
+  } else if(S.step>=2&&S.pay==="ach"){
+    h+='<div class="paybox"><b>Pay by bank (ACH)</b><br><span style="color:var(--muted)">Bank not yet connected</span></div>';
+  }
+  h+='<div class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a8a8a" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Bank login is handled by Plaid. True Shot never sees bank credentials.</div>'+
+     '<div style="font-size:11.5px;color:#a0a0a0;margin-top:10px">All prices, quantities and freight are sample figures for this demo.</div></div>';
+  $("#summary").innerHTML=h;
+}
+function stepCart(){
+  var t=totals(),h='<div class="card"><h2>Wholesale cart <span class="sample-pill">SAMPLE PRICES</span></h2><p class="sub">Review case quantities before checkout. Wholesale pricing shown per case.</p>';
+  if(S.cartMsg)h+='<div class="notice warn" data-testid="cart-msg">⚠ '+S.cartMsg+'</div>';
+  h+='<table class="cart"><thead><tr><th>Product</th><th class="r">Case price</th><th style="text-align:center">Qty (cases)</th><th class="r">Line total</th></tr></thead><tbody>';
+  S.cart.forEach(function(x,i){
+    h+='<tr><td><div class="prod"><span class="thumb">'+x.tag+'</span><div><b>'+x.name+'</b><small>'+x.pack+' · SKU '+x.sku+' (sample)</small></div></div></td><td class="r">'+money(x.price)+'</td>'+
+       '<td style="text-align:center"><span class="qty"><button data-q="'+i+'" data-d="-1" aria-label="decrease">−</button><span>'+x.qty+'</span><button data-q="'+i+'" data-d="1" aria-label="increase">+</button></span></td>'+
+       '<td class="r"><b style="color:var(--ink)">'+money(x.price*x.qty)+'</b></td></tr>';
+  });
+  h+='</tbody></table><div class="navbar"><span></span><span class="hint">Order total '+money(t.total)+'</span><button class="btn" data-act="next" data-testid="next" '+(t.total<=0?"disabled":"")+'>Continue to payment →</button></div></div>';
+  return h;
+}
+function stepPayment(){
+  var h='<div class="card"><h2>Payment method</h2><p class="sub">Wholesale orders are prepaid. Choose how Sample Range &amp; Supply will pay.</p>'+
+  '<button class="opt '+(S.pay==="ach"?"sel":"")+'" data-pay="ach" data-testid="pay-ach"><span class="radio"></span><span><span class="t">Pay by bank (ACH) via Plaid<span class="tagg">RECOMMENDED</span></span>'+
+  '<div class="d">Log in to your business bank through Plaid. Your account is verified instantly and the available balance is checked before the order is placed.</div>'+
+  '<ul class="bul"><li>No typing account numbers</li><li>Instant verification</li><li>Balance confirmed up front</li></ul></span></button>';
+  if(S.pay==="ach"&&S.account){
+    h+='<div class="linked" data-testid="linked">'+bk(bankObj())+'<div style="flex:1"><b style="color:var(--ink)">'+S.bank+' · '+S.account.name+' ••••'+S.account.mask+'</b><br><small style="color:var(--muted)">Already connected through Plaid. The balance will be checked again for the current total.</small></div><button class="btn ghost sm" data-act="relink">Use a different bank</button></div>';
+  }
+  h+='<button class="opt '+(S.pay==="card"?"sel":"")+'" data-pay="card" data-testid="pay-card"><span class="radio"></span><span><span class="t">Credit / debit card</span><div class="d">Visa, Mastercard, American Express, Discover.</div>'+
+  (S.pay==="card"?'<div class="fakefields"><div>Card number</div><div>MM / YY</div><div>CVC</div></div><div class="d" style="margin-top:8px;color:var(--muted)">Card entry is handled by the gateway’s secure hosted fields and is not simulated in this demo.</div>':'')+'</span></button>';
+  var nx=S.pay==="ach"?(S.account?'<button class="btn" data-act="useLinked" data-testid="next">Continue with ••••'+S.account.mask+' →</button>':'<button class="btn" data-act="next" data-testid="next">Connect bank with Plaid →</button>'):'<button class="btn" disabled data-testid="next">Card checkout not simulated</button>';
+  return h+'<div class="navbar"><button class="btn ghost" data-act="back" data-testid="back">← Back to cart</button>'+nx+'</div></div>';
+}
+function stepConnect(){
+  return '<div class="card"><h2>Connect your bank</h2><p class="sub">A secure Plaid window opens over the checkout. If you closed it, reopen it below.</p>'+
+  '<div class="notice info">ℹ Plaid connects directly to the buyer’s bank. True Shot receives verified account details and the available balance. It never receives the bank username or password.</div>'+
+  '<div class="navbar"><button class="btn ghost" data-act="back" data-testid="back">← Back</button><button class="btn" data-act="openPlaid" data-testid="open-plaid">Open Plaid</button></div></div>';
+}
+var CHECKS=[
+  {k:"login",t:"Bank login confirmed",p:"Auth",d:function(){return "Buyer signed in to "+S.bank+" through Plaid, which shows they control this account.";}},
+  {k:"numbers",t:"Routing & account numbers received from the bank",p:"Auth",d:function(){return "Numbers come straight from "+S.bank+". Nothing was typed, so there are no typos.";}},
+  {k:"type",t:"Account type eligible for ACH debit",p:"Auth",d:function(){return S.account.type==="checking"?S.account.name+" (checking) is eligible.":S.account.name+": savings accounts are not accepted for wholesale ACH debits.";}},
+  {k:"balance",t:"Real-time available balance covers the order",p:"Balance",d:function(){return "Available "+money(S.account.bal)+" vs. ACH amount "+money(achAmount())+" · checked "+ftime(new Date());}},
+  {k:"identity",t:"Account holder matches wholesale account",p:"Identity",o:1,d:function(){return "Name on the bank account matches “Sample Range & Supply”.";}},
+  {k:"signal",t:"ACH return risk score",p:"Signal",o:1,d:function(){return "Low risk. Eligible for standard order release.";}}
+];
+function outcome(k){
+  var a=S.account,el=a.type==="checking",en=a.bal>=achAmount();
+  if(k==="login"||k==="numbers")return "ok";
+  if(k==="type")return el?"ok":"fail";
+  if(k==="balance")return !el?"skip":(en?"ok":"fail");
+  return (el&&en)?"ok":"skip";
+}
+function computeVerify(){var a=S.account;if(a.type!=="checking")return "ineligible";if(a.bal<achAmount())return "nsf";return "approved";}
+function stepVerify(){
+  var ph=S.verifyPhase,done=ph>=CHECKS.length,h='<div class="card" data-testid="verify-card">';
+  h+=!done?'<div class="verify-hero"><div class="radar"></div><div><h2>Verifying account and balance</h2><p class="sub" style="margin:2px 0 0">Plaid is confirming the account with '+S.bank+' and checking the available balance in real time…</p></div></div>'
+          :'<h2>Verification complete</h2><p class="sub">'+S.bank+' · '+S.account.name+' ••••'+S.account.mask+' · checked '+ftime(new Date())+'</p>';
+  var list='<ul class="checks">';
+  CHECKS.forEach(function(c,i){
+    var st=i<ph?outcome(c.k):(i===ph?"spin":"pending"),icon={ok:"✓",fail:"✕",skip:"–",spin:"",pending:""}[st];
+    list+='<li class="'+(st==="pending"?"pending":"")+'"><span class="ic '+st+'">'+icon+'</span><div><div class="ct">'+c.t+'<span class="prodtag">Plaid '+c.p+'</span>'+(c.o?'<span class="prodtag o">optional</span>':'')+'</div>'+
+       '<div class="cd">'+(i<ph?(st==="skip"?"Skipped because an earlier check did not pass.":c.d()):(i===ph?"Checking…":"Waiting"))+'</div></div></li>';
+  });
+  list+='</ul>';
+  if(!done)h+=list;
+  var nav=function(enabled){return '<div class="navbar"><button class="btn ghost" data-act="back" data-testid="back">← Back</button><button class="btn" data-act="next" data-testid="next" '+(enabled?"":"disabled")+'>Continue to secure payment →</button></div>';};
+  if(done){
+    var v=S.verify;
+    if(v==="approved"&&S.split){
+      h+='<div class="result ok" data-testid="result-split"><h3>✓ Split payment ready</h3><p>'+money(S.split.ach)+' by ACH from ••••'+S.account.mask+' (balance verified) plus '+money(S.split.card)+' by card.</p></div>'+nav(true);
+    } else if(v==="approved"){
+      h+='<div class="result ok" data-testid="result-approved"><h3>✓ Account verified, funds available</h3><p>Available balance of '+money(S.account.bal)+' covers the '+money(achAmount())+' order. The balance will be checked again right before the payment link is created.</p></div>'+nav(true);
+    } else if(v==="nsf"&&S.splitEdit){
+      var t=totals().total,d=S.splitEdit.ach;
+      h+='<div class="result warn" data-testid="split-editor"><h3>Pay part by bank, part by card</h3><p>The ACH portion must be at or below the verified available balance ('+money(S.account.bal)+'). The rest is charged to a card.</p>'+
+         '<div class="split"><div><label>ACH from ••••'+S.account.mask+'</label><input id="achAmt" type="number" min="0" step="50" value="'+d.toFixed(2)+'" data-testid="ach-amt"></div><div><label>Card (remainder)</label><input class="ro" id="cardAmt" readonly value="'+(t-d).toFixed(2)+'"></div></div>'+
+         '<p id="splitErr" style="color:var(--red);font-weight:700;display:none">ACH amount exceeds the available balance.</p></div>'+
+         '<div class="navbar"><button class="btn ghost" data-act="cancelSplit">← Other options</button><button class="btn" data-act="applySplit" data-testid="apply-split">Use split payment →</button></div>';
+    } else if(v==="nsf"){
+      h+='<div class="result warn" data-testid="result-nsf"><h3>⚠ Available balance is less than this order</h3><p>'+S.account.name+' ••••'+S.account.mask+' shows <b>'+money(S.account.bal)+'</b> available. This order is <b>'+money(achAmount())+'</b>.</p><p><b>Your order has not been submitted.</b> No payment link was created. Choose how to continue:</p>'+
+         '<div class="choices"><button class="choice" data-act="otherAcct" data-testid="choice-other"><b>Pick another account</b><span>Choose a different account at '+S.bank+' or another bank.</span></button>'+
+         '<button class="choice" data-act="split" data-testid="choice-split"><b>Pay part by card</b><span>Up to '+money(S.account.bal)+' by ACH, the remainder by card.</span></button>'+
+         '<button class="choice" data-act="reduce" data-testid="choice-reduce"><b>Reduce the order</b><span>Return to the cart and adjust case quantities.</span></button></div></div>'+nav(false);
+    } else {
+      h+='<div class="result bad" data-testid="result-ineligible"><h3>✕ This account can’t be used for ACH debit</h3><p>'+S.account.name+' ••••'+S.account.mask+' is a savings account. Wholesale ACH payments must come from an open business checking account. Closed or restricted accounts are blocked the same way.</p><p><b>Your order has not been submitted.</b> No payment link was created.</p>'+
+         '<div class="choices" style="grid-template-columns:1fr 1fr"><button class="choice" data-act="otherAcct" data-testid="choice-other"><b>Choose another account</b><span>Select a checking account in Plaid.</span></button>'+
+         '<button class="choice" data-act="toCard"><b>Pay by card instead</b><span>Return to payment options.</span></button></div></div>'+nav(false);
+    }
+  }
+  if(done)h+='<h3 style="font-size:14px;margin:22px 0 2px;color:var(--muted)">What Plaid checked</h3>'+list;
+  return h+'</div>';
+}
+var CUSTOMER={first:"Jordan",last:"Sample",company:"Sample Range & Supply"};
+var FLEX_URL="new.mytitaniumflex.com/Payment/0000demo0000sample0000link000000";
+var REDIRECT=[
+  {t:"Bank account verified",p:"Plaid Auth"},
+  {t:"Available balance re-checked just before the payment link is created",p:"Plaid Balance"},
+  {t:"Payment link requested from Titanium Flex",p:"Flex API"},
+  {t:"Redirecting to the secure payment page",p:""}
+];
+function stepFlex(){
+  var ph=S.redirPhase,done=ph>=REDIRECT.length,amt=achAmount();
+  var h='<div class="card" data-testid="redirect-card"><div class="verify-hero">'+(done?'<div class="ic ok" style="width:54px;height:54px;font-size:26px">✓</div>':'<div class="radar"></div>')+
+  '<div><h2>Bank verified. Redirecting you to our secure payment page</h2><p class="sub" style="margin:2px 0 0">You’ll finish paying '+money(amt)+' on Titanium Flex, True Shot’s secure payment page.</p></div></div><ul class="checks">';
+  REDIRECT.forEach(function(c,i){
+    var st=i<ph?"ok":(i===ph?"spin":"pending");
+    h+='<li class="'+(st==="pending"?"pending":"")+'"><span class="ic '+st+'">'+(st==="ok"?"✓":"")+'</span><div><div class="ct">'+c.t+(c.p?'<span class="prodtag">'+c.p+'</span>':'')+'</div>'+
+       (i===1&&i<ph?'<div class="cd">Available '+money(S.account.bal)+' vs. '+money(amt)+' · '+ftime(new Date())+'</div>':'')+'</div></li>';
+  });
+  h+='</ul><div class="useacct" data-testid="use-acct">'+bk(bankObj(),34)+'<div>On the next page, enter the account you just verified: <b>'+S.bank+' · '+S.account.name+' ••••'+S.account.mask+'</b>. A different account would skip the balance check.</div></div>'+
+  '<div class="devnote" data-testid="dev-note"><b class="k">DEVELOPER NOTE</b>Site calls Flex API with amount <code>'+money(amt)+'</code> and customer name <code>"'+CUSTOMER.first+' '+CUSTOMER.last+'"</code> → receives payment link → redirects the buyer. Only the amount and the customer name are passed. The site does not control the Flex page.</div>'+
+  '<div class="navbar"><button class="btn ghost" data-act="back" data-testid="back">← Back</button><span class="hint" id="redirHint">'+(done?'Redirecting…':'')+'</span><button class="btn" data-act="toFlex" data-testid="go-flex" '+(done?"":"disabled")+'>Go to secure payment page →</button></div></div>';
+  return h;
+}
+function startRedirect(){
+  S.redirPhase=0;
+  var run=function(){
+    if(S.step!==5)return;
+    S.redirPhase++;render();
+    if(S.redirPhase<REDIRECT.length)later(run,700);else later(openFlex,1400);
+  };
+  later(run,700);
+}
+function flexDefaults(){return {open:false,name:CUSTOMER.company,routing:"123456789",acct:"000123451234",acct2:"000123451234",type:"Business Checking",auth:false,phase:"form",txn:"FLX-DEMO-000123"};}
+var ctlAuto=false;
+function openFlex(){clearTimers();S.flex=flexDefaults();renderFlex();$("#flexWin").classList.add("show");var c=$("#ctl");if(!c.classList.contains("min")){c.classList.add("min");$("#ctlMin").textContent="+";ctlAuto=true;}}
+function closeFlex(){$("#flexWin").classList.remove("show");if(ctlAuto){$("#ctl").classList.remove("min");$("#ctlMin").textContent="–";ctlAuto=false;}}
+function flexValid(){var f=S.flex;return f.open&&f.name.trim().length>1&&/^\d{9}$/.test(f.routing)&&/^\d{4,17}$/.test(f.acct)&&f.acct===f.acct2&&f.auth;}
+function last4(){return (S.flex.acct||"").slice(-4);}
+function liveMatch(){
+  var l=last4(),ok=l===S.account.mask;
+  if(!S.flex.open||l.length<4)return '<div class="live" style="background:#f1f1f1;color:#555">Waiting for buyer to enter bank details…</div>';
+  return ok?'<div class="live ok" data-testid="match-ok">✓ Account entered ends ••••'+l+' and matches the Plaid-verified account.</div>'
+           :'<div class="live bad" data-testid="match-bad">⚠ Account entered ends ••••'+l+', not the verified ••••'+S.account.mask+'. Flex will still accept it. This is the residual risk, so flag it for reconciliation.</div>';
+}
+function flexUpdate(){
+  var b=$("[data-testid=flex-pay]");if(b)b.disabled=!flexValid();
+  var m=$("#liveMatch");if(m)m.innerHTML=liveMatch();
+  var a2=$("#fxAcct2");if(a2)a2.parentNode.classList.toggle("bad",S.flex.acct2.length>0&&S.flex.acct2!==S.flex.acct);
+}
+function renderFlex(){
+  var f=S.flex,amt=achAmount(),today=new Date().toDateString(),h;
+  h='<div class="fx-chrome"><span class="fx-dots"><i></i><i></i><i></i></span><span class="fx-navi">‹ › ↻</span><div class="fx-url" data-testid="flex-url">🔒 <span>https://</span>'+FLEX_URL+'</div><span class="fx-sim">SIMULATED THIRD-PARTY PAGE · DEMO · SAMPLE DATA</span></div><div class="fx-body"><div class="fx-grid"><div class="fx-card">';
+  h+='<div class="fx-head"><div class="fx-logo"><span class="w"><span class="t">true</span><span class="s">shot</span></span><span class="g">TAKE YOUR BEST SHOT</span></div><div class="fx-merchant">True Shot Ammo</div></div>';
+  if(f.phase==="done"){
+    h+='<div class="fx-done" data-testid="flex-done"><div class="ck">✓</div><h2>Payment submitted</h2><p class="fx-lbl">Thank you, '+CUSTOMER.first+' '+CUSTOMER.last+'.</p><div class="fx-amt" style="margin:10px 0">'+money(amt)+'</div>'+
+       '<table class="fx-t" style="max-width:420px;margin:0 auto 20px;text-align:left"><tr><td>Payment method</td><td>Bank transfer ('+f.type+')</td></tr><tr><td>Account</td><td>••••'+last4()+'</td></tr><tr><td>Transaction ID</td><td>'+f.txn+' (sample)</td></tr><tr><td>Date</td><td>'+today+'</td></tr></table>'+
+       '<button class="fx-pay" style="max-width:420px;margin:0 auto" data-fx="return" data-testid="flex-return">Return to True Shot Ammo</button></div>';
+  } else {
+    h+='<p class="fx-lbl">Payment Amount</p><div class="fx-amt" data-testid="flex-amount">'+money(amt)+'</div>'+
+    '<div class="fx-row"><div class="fx-f ro"><label>First Name *</label><input readonly value="'+CUSTOMER.first+'" data-testid="flex-first"></div><div class="fx-f ro"><label>Last Name</label><input readonly value="'+CUSTOMER.last+'"></div></div>'+
+    '<p class="fx-hint">Amount and name were passed from True Shot and are read-only.</p>'+
+    '<button class="fx-tab '+(f.open?"on":"")+'" data-fx="bank" data-testid="flex-bank">BANK TRANSFER</button>'+
+    '<div class="fx-ach '+(f.open?"show":"")+'"><div class="fx-row"><div class="fx-f" style="grid-column:1/-1"><label>Name on Account *</label><input data-ff="name" value="'+f.name.replace(/&/g,"&amp;")+'" data-testid="fx-name"></div></div>'+
+    '<div class="fx-row"><div class="fx-f"><label>Routing Number *</label><input data-ff="routing" inputmode="numeric" maxlength="9" value="'+f.routing+'" data-testid="fx-routing"></div><div class="fx-f"><label>Account Type *</label><select data-ff="type" data-testid="fx-type"><option'+(f.type==="Business Checking"?" selected":"")+'>Business Checking</option><option'+(f.type==="Personal Checking"?" selected":"")+'>Personal Checking</option><option'+(f.type==="Savings"?" selected":"")+'>Savings</option></select></div></div>'+
+    '<div class="fx-row"><div class="fx-f"><label>Account Number *</label><input data-ff="acct" inputmode="numeric" maxlength="17" value="'+f.acct+'" data-testid="fx-acct"></div><div class="fx-f"><label>Confirm Account Number *</label><input id="fxAcct2" data-ff="acct2" inputmode="numeric" maxlength="17" value="'+f.acct2+'" data-testid="fx-acct2"></div></div>'+
+    '<p class="fx-hint">Demo: sample values are prefilled and any digits work. Never enter real bank details.</p>'+
+    '<label class="fx-auth"><input type="checkbox" data-ff="auth" '+(f.auth?"checked":"")+' data-testid="fx-auth"><span>I authorize True Shot Ammo to debit the bank account above for '+money(amt)+' on '+today+'.</span></label></div>'+
+    '<button class="fx-pay" data-fx="pay" data-testid="flex-pay" '+(flexValid()&&f.phase==="form"?"":"disabled")+'>'+(f.phase==="processing"?'<span class="fx-spin"></span>Processing…':'🔒 Pay')+'</button>'+
+    '<div class="fx-legal">By clicking ‘Pay’ I authorize True Shot Ammo to debit my bank account '+money(amt)+' on '+today+'.<br><u>Privacy Statement</u><br><u>Refund Policy</u></div>';
+  }
+  h+='</div><div><div class="fx-card" style="padding:14px 16px"><button class="fx-inv" tabindex="-1">View Invoice</button><table class="fx-t"><tr><td>Invoice</td><td>DEMO-100001</td></tr><tr><td>Due Date</td><td>'+today+'</td></tr></table>'+
+     '<div class="fx-tot"><div><span>Subtotal:</span><span>'+money(amt)+'</span></div><div><span>Total:</span><span>'+money(amt)+'</span></div></div></div>'+
+     '<div class="dmpnote" data-testid="dmp-note"><div class="h">DMP NOTE · DEMO ANNOTATION, NOT PART OF THE FLEX PAGE</div><div id="liveMatch" style="margin-bottom:10px">'+liveMatch()+'</div>Plaid verified <b>'+S.bank+' ••••'+S.account.mask+'</b> (Auth + Balance) <b>before</b> this link was generated. Buyers should pay from that same account.<br><br><b>Residual risk:</b> this page is separate from True Shot’s site, so nothing automatically forces the buyer to use the verified account, and the numbers are typed again here.'+
+     '<ul><li>Tell the buyer which bank and last-4 to use (shown before the redirect).</li><li>Reconcile last-4 of the Flex payment against the verified account after payment. Hold the order if they differ.</li><li>Ask Titanium whether Flex can prefill or lock bank details, or validate routing numbers.</li></ul>'+
+     '</div></div></div></div>';
+  $("#flexWin").innerHTML=h;
+}
+function stepConfirm(){
+  var o=S.order,match=o.flexLast4===o.mask;
+  return '<div class="card" data-testid="confirmation"><div class="conf-hero"><div class="bigcheck">✓</div><h2>Order placed. Thank you!</h2><div class="ordno" data-testid="order-no">'+o.no+'</div><p class="sub" style="margin:4px 0 0">Placed '+fdate(o.at)+' at '+ftime(o.at)+' · Confirmation sent to purchasing@samplerange.example</p></div>'+
+  '<dl class="kv" style="margin-top:16px"><dt>ACH payment</dt><dd>'+money(o.ach)+' via Titanium Flex · '+o.txn+' (sample)</dd>'+(o.card?'<dt>Card charge</dt><dd>'+money(o.card)+'</dd>':'')+
+  '<dt>Verified with Plaid</dt><dd>'+o.bank+' ••••'+o.mask+' · balance re-checked before the link was created</dd>'+
+  '<dt>Account used on Flex</dt><dd data-testid="recon">••••'+o.flexLast4+' '+(match?'<span style="color:var(--green)">✓ matches verified account</span>':'<span style="color:var(--red)">⚠ differs from verified ••••'+o.mask+'. Flagged for review before release.</span>')+'</dd></dl>'+
+  '<h3 style="font-size:16px">What happens next</h3><ol class="next-steps">'+
+  '<li><span><b>Email confirmation</b> with your order details.</span></li>'+
+  '<li><span><b>Titanium Flex processes the ACH debit.</b> Settlement timing follows the Flex / DMP processing setup.</span></li>'+
+  '<li><span><b>True Shot reconciles the payment:</b> last-4 of the Flex payment against the Plaid-verified account.</span></li>'+
+  '<li><span><b>Order released to the warehouse</b> per True Shot’s release policy (for example, right away for established accounts, or after settlement for first orders). Tracking follows when the freight ships.</span></li>'+
+  '<li><span><b>For business accounts:</b> if your bank uses ACH debit blocks or filters, whitelist the ACH Company ID True Shot provides so the debit isn’t rejected.</span></li></ol>'+
+  '<div class="navbar"><button class="btn ghost" data-act="restart" data-testid="restart">Start a new demo</button><button class="btn dark" data-act="openBts" data-testid="open-bts">See behind the scenes →</button></div></div>';
+}
+function pFrame(body,foot,back){
+  return '<span class="sim-tag">SIMULATED · DEMO</span><div class="p-top"><button data-p="'+(back||"")+'" aria-label="Back" style="visibility:'+(back?"visible":"hidden")+'">←</button><button data-p="close" aria-label="Close" data-testid="plaid-close">✕</button></div>'+
+  '<div class="p-body">'+body+'</div><div class="p-foot">'+(foot||"")+'<div class="p-attr">Secured by '+plaidMark()+'</div></div>';
+}
+function renderPlaid(){
+  var p=S.plaid,h="",b=bankObj();
+  if(p==="consent"){
+    h=pFrame('<div class="duo"><div class="a"><b style="font-weight:800">t<span>s</span></b></div><div class="b"><span class="plaid-mark">'+grid()+'</span></div></div>'+
+    '<div class="p-h" style="text-align:center">True Shot Ammo uses <b>Plaid</b> to connect your account</div>'+
+    '<div class="perk"><span class="pi">⚡</span><div><b>Connect in seconds</b><span>Verify your business bank account instantly. No account numbers to type.</span></div></div>'+
+    '<div class="perk"><span class="pi">🔒</span><div><b>Your credentials stay private</b><span>Your bank login is never shared with True Shot Ammo.</span></div></div>'+
+    '<div class="perk"><span class="pi">✓</span><div><b>Balance checked up front</b><span>True Shot will see account details and the available balance to confirm payment.</span></div></div>',
+    '<p class="legal">By selecting “Continue” you agree to the Plaid <u>End User Privacy Policy</u> (simulated link).</p><button class="p-btn" data-p="institutions" data-testid="plaid-continue">Continue</button>');
+  } else if(p==="institutions"){
+    var q=(S.bankQuery||"").toLowerCase(),list=BANKS.filter(function(x){return x.n.toLowerCase().indexOf(q)>=0;});
+    h=pFrame('<div class="p-h">Select your bank</div><div class="p-search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="bankSearch" placeholder="Search" value="'+(S.bankQuery||"")+'" data-testid="bank-search" autocomplete="off"></div>'+
+    '<div class="banks">'+(list.length?list.map(function(x){return '<button class="bank" data-bank="'+x.n+'" data-testid="bank-'+x.i+'">'+bk(x,36)+x.n+'</button>';}).join(""):'<p class="p-p" style="grid-column:1/-1">No matches. Try another name.</p>')+'</div>',"","consent");
+  } else if(p==="login"){
+    h=pFrame('<div class="bankhead">'+bk(b,40)+'<b>'+b.n+'</b></div><div class="p-h">Enter your '+b.n+' credentials</div>'+
+    '<div class="sandbox">This demo uses sandbox-style test credentials only. Fields are locked. Never enter real bank credentials here.</div>'+
+    '<div class="p-field"><label>Username</label><input readonly value="user_good" data-testid="p-user"></div>'+
+    '<div class="p-field"><label>Password</label><input readonly value="pass_good" data-testid="p-pass"></div>'+
+    '<p class="legal" style="text-align:left">Plaid sends your credentials securely to '+b.n+'. True Shot Ammo never receives them.</p>',
+    '<button class="p-btn" data-p="'+(S.mfa?"mfa":"connecting")+'" data-testid="plaid-submit">Submit</button>',"institutions");
+  } else if(p==="mfa"){
+    h=pFrame('<div class="bankhead">'+bk(b,40)+'<b>'+b.n+'</b></div><div class="p-h">Enter verification code</div><p class="p-p">'+b.n+' sent a one-time code to the phone ending in ••00 (simulated).</p>'+
+    '<div class="code-in"><span>1</span><span>2</span><span>3</span><span>4</span></div><div class="sandbox">Sandbox-style code prefilled: 1234</div>',
+    '<button class="p-btn" data-p="connecting" data-testid="plaid-mfa">Submit</button>',"login");
+  } else if(p==="connecting"){
+    h=pFrame('<div class="p-center"><div class="p-spin"></div><div class="p-h" style="margin:0">Connecting to '+b.n+'</div><p class="p-p">This usually takes a few seconds…</p></div>',"");
+    later(function(){if(S.plaid==="connecting"){S.plaid="accounts";renderPlaid();}},1300);
+  } else if(p==="accounts"){
+    h=pFrame('<div class="bankhead">'+bk(b,40)+'<b>'+b.n+'</b></div><div class="p-h">Select the account to pay from</div><p class="p-p">True Shot Ammo will use this account for the ACH payment.</p>'+
+    accountsFor(S.scenario).map(function(a){
+      return '<button class="acct '+(S.acctId===a.id?"sel":"")+'" data-acct="'+a.id+'" data-testid="acct-'+a.mask+'"><span class="rb"></span><span><b>'+a.name+'</b><small>'+(a.type==="checking"?"Checking":"Savings")+' ••••'+a.mask+'</small>'+(S.rejected[a.id]?'<span class="flag">'+S.rejected[a.id]+'</span>':'')+'</span><span class="bal">Available<br><b>'+money(a.bal)+'</b></span></button>';
+    }).join(""),'<button class="p-btn" data-p="success" data-testid="plaid-acct-continue">Continue</button>',"login");
+  } else if(p==="success"){
+    h=pFrame('<div class="p-center"><div class="p-success">✓</div><div class="p-h" style="margin:0 0 6px">Success</div><p class="p-p">Your '+b.n+' account is connected to True Shot Ammo.</p></div>',
+    '<button class="p-btn" data-p="finish" data-testid="plaid-finish">Continue</button>');
+  }
+  $("#plaid").innerHTML=h;
+  var bs=$("#bankSearch");
+  if(bs)bs.addEventListener("input",function(){S.bankQuery=bs.value;var pos=bs.selectionStart;renderPlaid();var n=$("#bankSearch");n.focus();n.setSelectionRange(pos,pos);});
+}
+function openPlaid(scr){S.plaid=scr||"consent";$("#plaidOverlay").classList.add("show");renderPlaid();}
+function closePlaid(){$("#plaidOverlay").classList.remove("show");}
+function finishVerify(){S.verifyPhase=CHECKS.length;S.verify=computeVerify();if(S.verify==="nsf")S.rejected[S.account.id]="Insufficient for this order";if(S.verify==="ineligible")S.rejected[S.account.id]="Not eligible (savings)";}
+function startVerify(){
+  S.verifyPhase=0;S.verify=null;S.splitEdit=null;
+  var run=function(){
+    if(S.step!==4)return;
+    S.verifyPhase++;
+    var c=CHECKS[S.verifyPhase-1];
+    if(S.verifyPhase>=CHECKS.length||outcome(c.k)==="fail"){finishVerify();render();return;}
+    render();later(run,650);
+  };
+  later(run,900);
+}
+function renderBts(){
+  var hl=function(n){return S.step===n?' class="hl"':'';};
+  $("#bts").innerHTML='<div class="bts-h"><div><h2>Behind the scenes</h2><small>For the Controller: what Plaid checks, what Flex does and why it matters</small></div><button data-act="closeBts" data-testid="bts-close">Close ✕</button></div><div class="bts-b">'+
+  '<div class="callout"><b>Bottom line:</b> No payment link is created until Plaid confirms a real, open checking account with enough available balance. Buyers who fail (low funds, savings or ineligible accounts) never reach the payment page. The ACH payment itself is then completed on Titanium Flex’s hosted page.</div>'+
+  '<h3>What happens at each step</h3><table><tr><th>Step</th><th>What happens</th><th>Who / product</th></tr>'+
+  '<tr'+hl(2)+'><td>2 · Payment</td><td>Buyer chooses Pay by bank (ACH) via Plaid, or card. ACH requires Plaid verification first.</td><td>True Shot site</td></tr>'+
+  '<tr'+hl(3)+'><td>3 · Connect bank</td><td>Buyer logs in to their bank in Plaid’s window and picks an account. Link can be limited to checking accounts.</td><td>Plaid Auth</td></tr>'+
+  '<tr'+hl(4)+'><td>4 · Verify</td><td>Account type and real-time available balance checked against the order. Optional name match and return-risk score. <b>A failure stops here, and no Flex link is created.</b></td><td>Plaid Auth, Balance; Identity and Signal (optional)</td></tr>'+
+  '<tr'+hl(5)+'><td>5 · Secure payment</td><td>Balance re-checked, then the site calls the Flex API with the <b>amount and customer name only</b>. Flex returns a payment link and the buyer is redirected. The buyer types bank details and authorizes the debit on the Flex page, and Flex processes the ACH.</td><td>Plaid Balance → Titanium Flex</td></tr>'+
+  '<tr'+hl(6)+'><td>6 · Confirmation</td><td>Buyer returns to True Shot. Staff reconcile last-4 of the Flex payment against the Plaid-verified account before release.</td><td>True Shot / DMP</td></tr></table>'+
+  '<h3>ACH return codes this targets</h3><table><tr><th>Code</th><th>Meaning</th><th>Effect in this flow</th></tr>'+
+  '<tr><td><span class="code">R01</span></td><td>Insufficient funds</td><td><span class="part">Greatly reduced</span> when the buyer pays from the verified account. The balance is a snapshot taken before the link is created.</td></tr>'+
+  '<tr><td><span class="code">R02</span></td><td>Account closed</td><td><span class="good">Largely prevented</span> for the verified account. The buyer had to log in to a live, open account.</td></tr>'+
+  '<tr><td><span class="code">R03</span></td><td>No account / unable to locate account</td><td><span class="part">Reduced, not eliminated.</span> The buyer re-types numbers on Flex. Plaid confirms the right bank and last-4, but Flex does not check the typed numbers against them.</td></tr>'+
+  '<tr><td><span class="code">R04</span></td><td>Invalid account number</td><td><span class="part">Reduced, not eliminated.</span> Same reason: typos on the Flex page are still possible.</td></tr></table>'+
+  '<div class="callout" style="border-color:#b8152a;background:#fdf2f3"><b>Residual risk: account match isn’t enforced.</b> The Flex page is a separate site that only receives the amount and name, so the buyer could type a different or mistyped account. Mitigations: show the verified bank and last-4 before the redirect; reconcile the Flex payment last-4 against the verified account after payment and hold on a mismatch; ask Titanium whether Flex can prefill, lock or validate bank details.</div>'+
+  '<h3>What it does <u>not</u> prevent</h3><table>'+
+  '<tr><td><span class="code">R10</span></td><td>Customer says the debit was not authorized. This is a dispute risk. Reduce it with the authorization captured on Flex, a clear statement descriptor and an optional Identity name match.</td></tr>'+
+  '<tr><td><span class="code">R29</span></td><td>Corporate customer says the debit was not authorized. This often happens when a business account has ACH debit blocks. Ask wholesale buyers to whitelist the ACH Company ID used for the debits.</td></tr>'+
+  '<tr><td><span class="code">R07/R08</span></td><td>Buyer revokes the authorization or places a stop payment.</td></tr>'+
+  '<tr><td><span class="code">R16</span></td><td>Account frozen after the check.</td></tr></table>'+
+  '<div class="callout" style="border-color:#b25e00;background:#fff8ec"><b>Timing caveat:</b> The balance is checked when the order is placed and again right before the Flex link is created. It is a snapshot, not a hold on funds. The buyer’s balance can change before the ACH debit settles.</div>'+
+  '<h3>Recommendations</h3><ul>'+
+  '<li>Re-check the balance with Plaid right before creating the Flex link (shown in step 5), not just at checkout.</li>'+
+  '<li>Create the Flex link only after Plaid passes, for the exact verified amount. Ask Titanium about link expiry or one-time use.</li>'+
+  '<li>Ask DMP / Titanium about the ACH settlement timing Flex uses. A shorter gap between the check and settlement is better.</li>'+
+  '<li>Confirm with Titanium how the site learns a payment succeeded (return URL, notification or report), and what payment details (such as last-4) are available for reconciliation.</li>'+
+  '<li>Limit Plaid Link to <b>checking</b> accounts so ineligible accounts are filtered out up front.</li>'+
+  '<li>Consider holding shipment until settlement for first-time or unusually large orders, and on any last-4 mismatch.</li>'+
+  '<li>Optional: <b>Plaid Identity</b> (name match to the wholesale account) and <b>Plaid Signal</b> (return-risk score).</li></ul>'+
+  '<h3>Cost &amp; effort</h3><ul><li>Plaid per-check fees apply (Auth, Balance and any optional products). <b>Get a quote from Plaid.</b> This demo assumes no Plaid pricing.</li><li>The web developer adds Plaid Link and the Balance check to the wholesale checkout, then calls the Flex API (amount + customer name) and redirects to the returned link. The Flex page itself is not changed.</li></ul>'+
+  '<p class="fine">Demo prepared by Dynamic Merchant Processing. Simulated UI with no connection to Plaid, Titanium Flex, any bank or True Shot systems. The Flex page is an approximation for illustration. Return-code meanings follow NACHA definitions. Actual results depend on implementation and buyer behavior.</p></div>';
+}
+function toggleBts(force){
+  var show=typeof force==="boolean"?force:!$("#bts").classList.contains("show");
+  if(show)renderBts();
+  $("#bts").classList.toggle("show",show);$("#btsBtn").classList.toggle("on",show);
+}
+function render(){
+  renderStepper();renderSummary();
+  $("#main").innerHTML=[null,stepCart,stepPayment,stepConnect,stepVerify,stepFlex,stepConfirm][S.step]();
+  if($("#bts").classList.contains("show"))renderBts();
+  var aa=$("#achAmt");if(aa)aa.addEventListener("input",function(){var v=parseFloat(aa.value)||0;$("#cardAmt").value=Math.max(0,totals().total-v).toFixed(2);var e=$("#splitErr");e.textContent="ACH amount exceeds the available balance.";e.style.display=v>S.account.bal?"block":"none";});
+  $("#cartBadge").textContent=totals().units;
+}
+function go(n){
+  clearTimers();S.step=n;if(n!==5)closeFlex();
+  if(n===3){openPlaid(S.plaidResume||"consent");S.plaidResume=null;}
+  render();
+  if(n===4)startVerify();
+  if(n===5)startRedirect();
+  window.scrollTo(0,0);
+}
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-act],[data-pay],[data-q],[data-go],[data-p],[data-bank],[data-acct],[data-fx]");
+  if(!t)return;
+  var ds=t.dataset;
+  if(ds.fx){
+    if(ds.fx==="bank"){S.flex.open=!S.flex.open;renderFlex();}
+    else if(ds.fx==="pay"&&flexValid()){S.flex.phase="processing";renderFlex();later(function(){S.flex.phase="done";renderFlex();$("#flexWin .fx-body").scrollTop=0;},1300);}
+    else if(ds.fx==="return"){S.order={no:"TSW-DEMO-204817",at:new Date(),ach:achAmount(),card:S.split?S.split.card:0,bank:S.bank,mask:S.account.mask,txn:S.flex.txn,flexLast4:last4()};go(6);}
+    return;
+  }
+  if(ds.q!==undefined){var it=S.cart[+ds.q];it.qty=Math.max(0,it.qty+(+ds.d));render();return;}
+  if(ds.pay){S.pay=ds.pay;render();return;}
+  if(ds.go){var g=+ds.go;if(g<S.step&&S.step!==6)go(g===3?2:g);return;}
+  if(ds.bank){S.bank=ds.bank;S.plaid="login";renderPlaid();return;}
+  if(ds.acct){S.acctId=ds.acct;renderPlaid();return;}
+  if(ds.p!==undefined){
+    var p=ds.p;if(!p)return;
+    if(p==="close"){clearTimers();closePlaid();return;}
+    if(p==="finish"){S.account=accountsFor(S.scenario).filter(function(a){return a.id===S.acctId;})[0];S.split=null;closePlaid();go(4);return;}
+    S.plaid=p;renderPlaid();return;
+  }
+  var a=ds.act;
+  if(a==="next")go(S.step+1);
+  else if(a==="back")go(S.step===4?2:S.step-1);
+  else if(a==="openPlaid")openPlaid("consent");
+  else if(a==="useLinked"){S.split=null;go(4);}
+  else if(a==="relink"){S.account=null;S.bank=null;S.rejected={};S.acctId="a1";go(3);}
+  else if(a==="otherAcct"){S.acctId="a2";S.plaidResume="accounts";go(3);}
+  else if(a==="split"){S.splitEdit={ach:Math.floor(S.account.bal/500)*500};render();}
+  else if(a==="cancelSplit"){S.splitEdit=null;render();}
+  else if(a==="applySplit"){
+    var v=parseFloat($("#achAmt").value)||0,tt=totals().total,er=$("#splitErr");
+    if(v<=0||v>S.account.bal||v>=tt){er.textContent=v>S.account.bal?"ACH amount exceeds the available balance.":"Enter an ACH amount greater than $0 and no more than the available balance.";er.style.display="block";return;}
+    S.split={ach:v,card:+(tt-v).toFixed(2)};S.splitEdit=null;S.verify="approved";render();
+  }
+  else if(a==="reduce"){S.cartMsg="Your verified available balance at "+S.bank+" ••••"+S.account.mask+" is "+money(S.account.bal)+". Reduce quantities to fit, or go back and choose another payment option. Your order has not been submitted.";go(1);}
+  else if(a==="toCard"){S.pay="card";S.account=null;S.bank=null;go(2);}
+  else if(a==="toFlex"){openFlex();}
+  else if(a==="restart")reset();
+  else if(a==="openBts")toggleBts(true);
+  else if(a==="closeBts")toggleBts(false);
+});
+document.querySelectorAll("input[name=sc]").forEach(function(r){r.addEventListener("change",function(){
+  S.scenario=r.value;setDesc();
+  if(S.account&&S.step<6){closeFlex();S.account=null;S.rejected={};S.split=null;S.acctId="a1";if(S.step>=3){S.plaidResume="accounts";go(3);}else render();}
+  else if($("#plaidOverlay").classList.contains("show"))renderPlaid();
+});});
+function onFx(e){var el=e.target,k=el.dataset&&el.dataset.ff;if(!k||!S.flex)return;S.flex[k]=el.type==="checkbox"?el.checked:(k==="name"||k==="type"?el.value:el.value.replace(/\D/g,""));if(el.type!=="checkbox"&&k!=="name"&&k!=="type"&&el.value!==S.flex[k])el.value=S.flex[k];flexUpdate();}
+$("#flexWin").addEventListener("input",onFx);$("#flexWin").addEventListener("change",onFx);
+$("#mfaTgl").addEventListener("change",function(){S.mfa=this.checked;if($("#plaidOverlay").classList.contains("show"))renderPlaid();});
+$("#ctlMin").addEventListener("click",function(){var c=$("#ctl");c.classList.toggle("min");this.textContent=c.classList.contains("min")?"+":"–";});
+$("#btsBtn").addEventListener("click",function(){toggleBts();});
+$("#btsTab").addEventListener("click",function(){toggleBts(true);});
+$("#resetBtn").addEventListener("click",function(){reset();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&$("#bts").classList.contains("show"))toggleBts(false);});
+var DESC={approved:"Checking account; balance covers the order.",nsf:"Checking account; available balance is below the order total.",ineligible:"Buyer picks a savings account (not eligible for ACH debit)."};
+function setDesc(){$("#scDesc").textContent=DESC[S.scenario];}
+function reset(){clearTimers();closePlaid();closeFlex();$("#busyOverlay").classList.remove("show");S=freshState(S?S.scenario:"approved");setDesc();render();window.scrollTo(0,0);}
+window.demo={state:function(){return S;},go:go,reset:reset};
+if(window.innerWidth<700){$("#ctl").classList.add("min");$("#ctlMin").textContent="+";}
+reset();
+})();
+</script>
+</body>
+</html>
