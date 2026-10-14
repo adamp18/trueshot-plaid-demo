@@ -518,11 +518,11 @@ function startRedirect(){
   };
   later(run,700);
 }
-function flexDefaults(){return {open:true,name:CUSTOMER.company,routing:"123456789",acct:"000123451234",acct2:"000123451234",type:"Business Checking",auth:false,phase:"form",txn:"FLX-DEMO-000123"};}
+function flexDefaults(){return {open:true,name:"",routing:"",acct:"",acct2:"",type:"",auth:false,phase:"form",txn:"FLX-DEMO-000123"};}
 var ctlAuto=false;
 function openFlex(){clearTimers();S.flex=flexDefaults();renderFlex();$("#flexWin").classList.add("show");var c=$("#ctl");if(!c.classList.contains("min")){c.classList.add("min");$("#ctlMin").textContent="+";ctlAuto=true;}}
 function closeFlex(){$("#flexWin").classList.remove("show");if(ctlAuto){$("#ctl").classList.remove("min");$("#ctlMin").textContent="–";ctlAuto=false;}}
-function flexValid(){var f=S.flex;return f.open&&f.name.trim().length>1&&/^\d{9}$/.test(f.routing)&&/^\d{4,17}$/.test(f.acct)&&f.acct===f.acct2&&f.auth;}
+function flexValid(){var f=S.flex;return f.open&&f.name.trim().length>1&&/^\d{9}$/.test(f.routing)&&!!f.type&&/^\d{4,17}$/.test(f.acct)&&f.acct===f.acct2&&f.auth;}
 function last4(){return (S.flex.acct||"").slice(-4);}
 function liveMatch(){
   var l=last4(),ok=l===S.account.mask;
@@ -549,9 +549,9 @@ function renderFlex(){
     '<p class="fx-hint">Amount and name were passed from True Shot and are read-only.</p>'+
     '<button class="fx-tab '+(f.open?"on":"")+'" data-fx="bank" data-testid="flex-bank">BANK TRANSFER</button>'+
     '<div class="fx-ach '+(f.open?"show":"")+'"><div class="fx-row"><div class="fx-f" style="grid-column:1/-1"><label>Name on Account *</label><input data-ff="name" value="'+f.name.replace(/&/g,"&amp;")+'" data-testid="fx-name"></div></div>'+
-    '<div class="fx-row"><div class="fx-f"><label>Routing Number *</label><input data-ff="routing" inputmode="numeric" maxlength="9" value="'+f.routing+'" data-testid="fx-routing"></div><div class="fx-f"><label>Account Type *</label><select data-ff="type" data-testid="fx-type"><option'+(f.type==="Business Checking"?" selected":"")+'>Business Checking</option><option'+(f.type==="Personal Checking"?" selected":"")+'>Personal Checking</option><option'+(f.type==="Savings"?" selected":"")+'>Savings</option></select></div></div>'+
+    '<div class="fx-row"><div class="fx-f"><label>Routing Number *</label><input data-ff="routing" inputmode="numeric" maxlength="9" value="'+f.routing+'" data-testid="fx-routing"></div><div class="fx-f"><label>Account Type *</label><select data-ff="type" data-testid="fx-type"><option value=""'+(f.type?"":" selected")+'>Select</option><option'+(f.type==="Business Checking"?" selected":"")+'>Business Checking</option><option'+(f.type==="Personal Checking"?" selected":"")+'>Personal Checking</option><option'+(f.type==="Savings"?" selected":"")+'>Savings</option></select></div></div>'+
     '<div class="fx-row"><div class="fx-f"><label>Account Number *</label><input data-ff="acct" inputmode="numeric" maxlength="17" value="'+f.acct+'" data-testid="fx-acct"></div><div class="fx-f"><label>Confirm Account Number *</label><input id="fxAcct2" data-ff="acct2" inputmode="numeric" maxlength="17" value="'+f.acct2+'" data-testid="fx-acct2"></div></div>'+
-    '<p class="fx-hint">Demo: sample values are prefilled and any digits work. Never enter real bank details.</p>'+
+    '<p class="fx-hint">Demo: type sample values. Any 9-digit routing number and any 4–17 digit account number work. End the account number in '+S.account.mask+' to match the verified account. Never enter real bank details.</p>'+
     '<label class="fx-auth"><input type="checkbox" data-ff="auth" '+(f.auth?"checked":"")+' data-testid="fx-auth"><span>I authorize True Shot Ammo to debit the bank account above for '+money(amt)+' on '+today+'.</span></label></div>'+
     '<button class="fx-pay" data-fx="pay" data-testid="flex-pay" '+(flexValid()&&f.phase==="form"?"":"disabled")+'>'+(f.phase==="processing"?'<span class="fx-spin"></span>Processing…':'🔒 Pay')+'</button>'+
     '<div class="fx-legal">By clicking ‘Pay’ I authorize True Shot Ammo to debit my bank account '+money(amt)+' on '+today+'.<br><u>Privacy Statement</u><br><u>Refund Policy</u></div>';
